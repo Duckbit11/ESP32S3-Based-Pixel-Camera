@@ -27,10 +27,12 @@ body {
 
 .main_body {
     width: min(100%, 700px);
-    height: 100vh;
-    padding: 40px 40px 150px;
+    min-height: 100vh;
+    padding: 40px 40px 40px;
     margin-inline: auto;
     box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
     background: var(--primary-color);
     box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.2);
 }
@@ -63,7 +65,7 @@ h1 span {
     display: flex;
     align-items: flex-end;
     justify-content: space-between;
-    margin-top: 30px;
+    margin-top: 10px;
     letter-spacing: -0.05em;
     font-size: clamp(3.2rem, 7vw, 4rem);
     font-weight: 600;
@@ -139,6 +141,7 @@ h1 span {
     justify-content: space-between;
     display: flex; 
     text-transform: uppercase;
+    padding-bottom: 0;
 }
 
 .status p {
