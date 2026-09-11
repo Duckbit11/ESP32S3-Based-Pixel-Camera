@@ -107,6 +107,16 @@ h1 span {
     flex-direction: column;
     align-items: center;
     margin-top: 20px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.camera_img {
+    width: min(100%, 500px);
+    max-height: 500px;
+    object-fit: contain;
+    display: block;
+    image-rendering: pixelated;
 }
 
 .filter_btn, .gallery_btn{
