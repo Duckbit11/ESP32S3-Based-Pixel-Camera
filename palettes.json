@@ -1,12 +1,36 @@
 {
   "palettes": [
     {
-      "name": "GameBoy Green",
+      "name": "Game Boy Green",
       "colors": ["#0f380f", "#306230", "#8bac0f", "#9bbc0f", "#0f380f", "#306230", "#8bac0f", "#9bbc0f"]
     },
     {
-      "name": "Cyberpunk 8",
-      "colors": ["#000000", "#ff0055", "#00ffcc", "#ffff00", "#ff00ff", "#00020d", "#7000ff", "#ffffff"]
+      "name": "Sunset Pop",
+      "colors": ["#f72585", "#ffb703", "#fb8500", "#f9c74f", "#ff7b00", "#ef476f", "#ff9f1c", "#ffd166"]
+    },
+    {
+      "name": "Ocean Drift",
+      "colors": ["#03045e", "#023e8a", "#0077b6", "#00b4d8", "#90e0ef", "#caf0f8", "#48cae4", "#ade8f4"]
+    },
+    {
+      "name": "Neon Night",
+      "colors": ["#000000", "#ff0055", "#00ffcc", "#ffff00", "#ff00ff", "#7000ff", "#ffffff", "#00d9ff"]
+    },
+    {
+      "name": "Forest Calm",
+      "colors": ["#1b4332", "#2d6a4f", "#40916c", "#52b788", "#74c69d", "#95d5b2", "#b7e4c7", "#d8f3dc"]
+    },
+    {
+      "name": "Candy Burst",
+      "colors": ["#ffafcc", "#ffc8dd", "#f9f871", "#ffb703", "#ff7b00", "#ff006e", "#8338ec", "#3a86ff"]
+    },
+    {
+      "name": "Monochrome",
+      "colors": ["#111111", "#2b2d42", "#495057", "#6c757d", "#adb5bd", "#dee2e6", "#f8f9fa", "#ffffff"]
+    },
+    {
+      "name": "Retro Pastel",
+      "colors": ["#f4acb7", "#ffcad4", "#f6bd60", "#e9edc9", "#cdb4db", "#bde0fe", "#a2d2ff", "#90be6d"]
     }
   ]
 }

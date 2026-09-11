@@ -241,7 +241,6 @@ h1 span {
     }
 }
 
-/* Gallery Photo Cards */
 .gallery_card {
     background: var(--accent-color3);
     border: 2px solid var(--accent-color3);
@@ -256,6 +255,206 @@ h1 span {
 .gallery_card:hover {
     transform: translateY(-2px);
     box-shadow: 4px 4px 0px var(--accent-color4);
+}
+
+/* Filter Palette Page */
+.palette_page {
+    padding-bottom: 60px;
+}
+
+.back_link {
+    color: var(--accent-color3);
+    text-decoration: none;
+    background: var(--primary-color);
+    border: 2px solid var(--accent-color3);
+    padding: 10px 14px;
+    font-weight: 700;
+    transition: all 0.2s ease;
+}
+
+.back_link:hover {
+    background: var(--accent-color4);
+    color: var(--primary-color);
+}
+
+.palette_intro {
+    margin-top: 28px;
+    margin-bottom: 18px;
+}
+
+.eyebrow {
+    margin: 0;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    font-size: 0.72rem;
+    color: var(--accent-color4);
+}
+
+.palette_intro h2 {
+    margin: 8px 0 0;
+    font-size: clamp(2rem, 4vw, 2.8rem);
+    line-height: 1;
+}
+
+.custom_palette_panel {
+    background: var(--accent-color3);
+    color: var(--primary-color);
+    padding: 20px;
+    box-shadow: 10px 10px 0 var(--accent-color4);
+    margin-bottom: 28px;
+}
+
+.custom_palette_header,
+.custom_palette_actions {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+}
+
+.custom_palette_panel label {
+    display: block;
+    margin-bottom: 8px;
+    font-size: 0.85rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--primary-color);
+}
+
+.custom_palette_header {
+    margin-bottom: 12px;
+}
+
+.custom_palette_panel input,
+.custom_palette_panel textarea {
+    width: 100%;
+    box-sizing: border-box;
+    border: 2px solid var(--primary-color);
+    background: rgba(255,255,255,0.04);
+    color: var(--primary-color);
+    font: inherit;
+    padding: 12px 14px;
+}
+
+.custom_palette_panel textarea {
+    resize: vertical;
+    min-height: 120px;
+}
+
+.custom_palette_panel input::placeholder,
+.custom_palette_panel textarea::placeholder {
+    color: rgba(241,239,223,0.7);
+}
+
+.custom_palette_actions {
+    margin-top: 14px;
+    justify-content: flex-end;
+}
+
+.custom_palette_panel button {
+    border: 0;
+    background: var(--primary-color);
+    color: var(--accent-color3);
+    padding: 12px 18px;
+    font: inherit;
+    font-weight: 700;
+    cursor: pointer;
+    transition: transform 0.15s ease, background 0.15s ease;
+}
+
+.custom_palette_panel button:hover {
+    background: var(--accent-color5);
+    color: var(--primary-color);
+    transform: translateY(-1px);
+}
+
+.palette_container {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 18px;
+}
+
+.palette_card {
+    background: #ffffff;
+    border: 3px solid var(--accent-color3);
+    padding: 14px;
+    box-shadow: 8px 8px 0 rgba(52, 104, 86, 0.2);
+}
+
+.palette_name_row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    margin-bottom: 12px;
+}
+
+.palette_name_row h3 {
+    margin: 0;
+    font-size: 1.1rem;
+    letter-spacing: -0.04em;
+}
+
+.palette_card_actions {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.small_action {
+    border: 0;
+    background: var(--accent-color3);
+    color: var(--primary-color);
+    padding: 6px 10px;
+    font: inherit;
+    font-size: 0.72rem;
+    cursor: pointer;
+    transition: opacity 0.15s ease;
+}
+
+.small_action:hover {
+    opacity: 0.85;
+}
+
+.small_action.delete_palette {
+    background: var(--accent-color4);
+}
+
+.palette_swatches {
+    display: grid;
+    grid-template-columns: repeat(8, minmax(0, 1fr));
+    gap: 6px;
+}
+
+.palette_swatch {
+    aspect-ratio: 1 / 1;
+    border: 2px solid rgba(8, 24, 32, 0.15);
+    border-radius: 4px;
+    background: #cccccc;
+    box-sizing: border-box;
+}
+
+@media (max-width: 720px) {
+    .palette_container {
+        grid-template-columns: 1fr;
+    }
+
+    .palette_swatches {
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+    }
+}
+
+@media (max-width: 520px) {
+    .custom_palette_header,
+    .custom_palette_actions,
+    .main_header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .custom_palette_panel {
+        box-shadow: 6px 6px 0 var(--accent-color4);
+    }
 }
 
 .img_wrapper {
