@@ -1,0 +1,12 @@
+{
+  "palettes": [
+    {
+      "name": "GameBoy Green",
+      "colors": ["#0f380f", "#306230", "#8bac0f", "#9bbc0f", "#0f380f", "#306230", "#8bac0f", "#9bbc0f"]
+    },
+    {
+      "name": "Cyberpunk 8",
+      "colors": ["#000000", "#ff0055", "#00ffcc", "#ffff00", "#ff00ff", "#00020d", "#7000ff", "#ffffff"]
+    }
+  ]
+}
