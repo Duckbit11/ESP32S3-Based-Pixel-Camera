@@ -4,7 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../css/design.css">
-    <title>BIT by BIT |  Gallery</title>
+    <script src="../js/gallery.js" defer></script>
+    <title>BIT by BIT | Gallery</title>
 </head>
 <body>
     <main class="main_body">
@@ -15,12 +16,27 @@
             </div>
 
             <div class="gallery_storage">
-                <strong data-hover="30%">10 / 32 GB</strong>
+                <strong>0 / 0 GB</strong>
                 <span>Used</span>
             </div>
         </header>
 
-        <section class="gallery_grid" aria-label="Photo gallery"></section>
+        <section class="gallery_grid" aria-label="Photo gallery">
+            <!-- Dynamic gallery items loaded via JS -->
+        </section>
     </main>
+
+    <div id="photo_modal" class="modal">
+        <div class="modal_content">
+            <button class="close_modal">&times;</button>
+            <div class="modal_img_wrapper">
+                <img id="modal_img" src="" alt="Full view preview" />
+            </div>
+            <div class="modal_footer">
+                <span id="modal_filename"></span>
+                <a id="download_btn" class="download_link" href="" download>Download</a>
+            </div>
+        </div>
+    </div>
 </body>
 </html>
