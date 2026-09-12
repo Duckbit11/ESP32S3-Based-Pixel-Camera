@@ -6,25 +6,31 @@ const applyCustomButton = document.getElementById("apply_custom_palette");
 let palettes = [];
 let editingPaletteIndex = null;
 
-function getPaletteDataUrl() {
-  return new URL("../palettes.json", window.location.href).href;
+async function fetchPalettes() {
+  const response = await fetch("/api/palettes");
+  if (!response.ok) {
+    throw new Error("Unable to load palette data");
+  }
+
+  const data = await response.json();
+  palettes = Array.isArray(data.palettes) ? data.palettes : [];
+  renderPalettes();
 }
 
-async function loadDefaultPalettes() {
-  try {
-    const response = await fetch(getPaletteDataUrl());
-    if (!response.ok) {
-      throw new Error("Unable to load palette data");
-    }
+async function savePalettes() {
+  const response = await fetch("/api/palettes", {
+    method: "PUT",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({ palettes }),
+  });
 
-    const data = await response.json();
-    palettes = Array.isArray(data.palettes) ? data.palettes : [];
-    renderPalettes();
-  } catch (error) {
-    console.error("Failed to load palettes from JSON:", error);
-    palettes = [];
-    renderPalettes();
+  if (!response.ok) {
+    throw new Error("Unable to save palette data");
   }
+
+  await fetchPalettes();
 }
 
 function formatPaletteName(name) {
@@ -56,32 +62,16 @@ function parseCustomHexes(rawText) {
     .map((entry) => entry.trim())
     .filter(Boolean);
 
-  const values = tokens
+  return tokens
     .map((token) => normalizeHex(token))
     .filter(Boolean);
-
-  return values;
-}
-
-function buildPaletteCard(palette) {
-  const swatches = Array.from({ length: 8 }, (_, index) => {
-    const color = palette.colors[index] || palette.colors[0] || "#ffffff";
-    return `<span class="palette_swatch" style="background:${color};" title="${color}"></span>`;
-  }).join("");
-
-  return `
-    <article class="palette_card">
-      <div class="palette_name_row">
-        <h3>${palette.name}</h3>
-      </div>
-      <div class="palette_swatches">${swatches}</div>
-    </article>
-  `;
 }
 
 function resetCustomForm() {
   editingPaletteIndex = null;
   applyCustomButton.textContent = "Apply custom palette";
+  paletteNameInput.value = "My Custom Palette";
+  customHexInput.value = "";
 }
 
 function preparePaletteForEditing(index) {
@@ -90,16 +80,18 @@ function preparePaletteForEditing(index) {
 
   editingPaletteIndex = index;
   paletteNameInput.value = palette.name;
-  customHexInput.value = palette.colors.slice(0, 8).join(", ");
+  customHexInput.value = Array.isArray(palette.colors) ? palette.colors.slice(0, 8).join(", ") : "";
   applyCustomButton.textContent = "Update palette";
   customHexInput.focus();
   customHexInput.scrollIntoView({ behavior: "smooth", block: "center" });
 }
 
 function renderPalettes() {
+  if (!paletteContainer) return;
+
   paletteContainer.innerHTML = palettes.map((palette, index) => {
     const swatches = Array.from({ length: 8 }, (_, swatchIndex) => {
-      const color = palette.colors[swatchIndex] || palette.colors[0] || "#ffffff";
+      const color = palette.colors?.[swatchIndex] || palette.colors?.[0] || "#ffffff";
       return `<span class="palette_swatch" style="background:${color};" title="${color}"></span>`;
     }).join("");
 
@@ -118,7 +110,7 @@ function renderPalettes() {
   }).join("");
 }
 
-function addCustomPalette() {
+async function addCustomPalette() {
   const customName = formatPaletteName(paletteNameInput.value);
   const parsedColors = parseCustomHexes(customHexInput.value);
 
@@ -137,17 +129,49 @@ function addCustomPalette() {
   };
 
   while (fullPalette.colors.length < 8) {
-    fullPalette.colors.push(fullPalette.colors[fullPalette.colors.length - 1] || "#ffffff");
+    const fallback = fullPalette.colors[fullPalette.colors.length - 1] || "#ffffff";
+    fullPalette.colors.push(fallback);
   }
 
+  const updatedPalettes = [...palettes];
   if (editingPaletteIndex !== null) {
-    palettes[editingPaletteIndex] = fullPalette;
-    resetCustomForm();
+    updatedPalettes[editingPaletteIndex] = fullPalette;
   } else {
-    palettes = [fullPalette, ...palettes.filter((palette) => palette.name !== customName)];
+    updatedPalettes.unshift(fullPalette);
   }
 
+  palettes = updatedPalettes;
   renderPalettes();
+
+  try {
+    await savePalettes();
+    resetCustomForm();
+  } catch (error) {
+    console.error("Failed to save palette:", error);
+    alert("Saving failed. Please try again.");
+  }
+}
+
+async function deletePalette(index) {
+  if (!Number.isInteger(index) || index < 0 || index >= palettes.length) {
+    return;
+  }
+
+  const copy = [...palettes];
+  copy.splice(index, 1);
+  palettes = copy;
+  renderPalettes();
+
+  if (editingPaletteIndex === index) {
+    resetCustomForm();
+  }
+
+  try {
+    await savePalettes();
+  } catch (error) {
+    console.error("Failed to delete palette:", error);
+    alert("Delete failed. Please try again.");
+  }
 }
 
 if (paletteContainer) {
@@ -162,13 +186,7 @@ if (paletteContainer) {
     const deleteButton = event.target.closest(".delete_palette");
     if (deleteButton) {
       const index = Number(deleteButton.dataset.index);
-      if (Number.isInteger(index) && index >= 0 && index < palettes.length) {
-        palettes.splice(index, 1);
-        if (editingPaletteIndex === index || editingPaletteIndex === null) {
-          resetCustomForm();
-        }
-        renderPalettes();
-      }
+      deletePalette(index);
     }
   });
 }
@@ -178,5 +196,9 @@ if (applyCustomButton) {
 }
 
 if (paletteContainer && paletteNameInput && customHexInput && applyCustomButton) {
-  loadDefaultPalettes();
+  fetchPalettes().catch((error) => {
+    console.error("Failed to load palettes:", error);
+    palettes = [];
+    renderPalettes();
+  });
 }
