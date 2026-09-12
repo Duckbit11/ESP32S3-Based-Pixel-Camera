@@ -80,7 +80,7 @@ function preparePaletteForEditing(index) {
 
   editingPaletteIndex = index;
   paletteNameInput.value = palette.name;
-  customHexInput.value = Array.isArray(palette.colors) ? palette.colors.slice(0, 8).join(", ") : "";
+  customHexInput.value = Array.isArray(palette.colors) ? palette.colors.slice(0, 16).join(", ") : "";
   applyCustomButton.textContent = "Update palette";
   customHexInput.focus();
   customHexInput.scrollIntoView({ behavior: "smooth", block: "center" });
@@ -90,7 +90,7 @@ function renderPalettes() {
   if (!paletteContainer) return;
 
   paletteContainer.innerHTML = palettes.map((palette, index) => {
-    const swatches = Array.from({ length: 8 }, (_, swatchIndex) => {
+    const swatches = Array.from({ length: 16 }, (_, swatchIndex) => {
       const color = palette.colors?.[swatchIndex] || palette.colors?.[0] || "#ffffff";
       return `<span class="palette_swatch" style="background:${color};" title="${color}"></span>`;
     }).join("");
@@ -125,10 +125,10 @@ async function addCustomPalette() {
 
   const fullPalette = {
     name: customName,
-    colors: [...parsedColors.slice(0, 8)]
+    colors: [...parsedColors.slice(0, 16)]
   };
 
-  while (fullPalette.colors.length < 8) {
+  while (fullPalette.colors.length < 16) {
     const fallback = fullPalette.colors[fullPalette.colors.length - 1] || "#ffffff";
     fullPalette.colors.push(fallback);
   }
