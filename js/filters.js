@@ -6,9 +6,13 @@ const applyCustomButton = document.getElementById("apply_custom_palette");
 let palettes = [];
 let editingPaletteIndex = null;
 
+function getPaletteDataUrl() {
+  return new URL("../palettes.json", window.location.href).href;
+}
+
 async function loadDefaultPalettes() {
   try {
-    const response = await fetch("../palettes.json");
+    const response = await fetch(getPaletteDataUrl());
     if (!response.ok) {
       throw new Error("Unable to load palette data");
     }
@@ -146,26 +150,33 @@ function addCustomPalette() {
   renderPalettes();
 }
 
-paletteContainer.addEventListener("click", (event) => {
-  const editButton = event.target.closest(".edit_palette");
-  if (editButton) {
-    const index = Number(editButton.dataset.index);
-    preparePaletteForEditing(index);
-    return;
-  }
-
-  const deleteButton = event.target.closest(".delete_palette");
-  if (deleteButton) {
-    const index = Number(deleteButton.dataset.index);
-    if (Number.isInteger(index) && index >= 0 && index < palettes.length) {
-      palettes.splice(index, 1);
-      if (editingPaletteIndex === index || editingPaletteIndex === null) {
-        resetCustomForm();
-      }
-      renderPalettes();
+if (paletteContainer) {
+  paletteContainer.addEventListener("click", (event) => {
+    const editButton = event.target.closest(".edit_palette");
+    if (editButton) {
+      const index = Number(editButton.dataset.index);
+      preparePaletteForEditing(index);
+      return;
     }
-  }
-});
 
-applyCustomButton.addEventListener("click", addCustomPalette);
-loadDefaultPalettes();
+    const deleteButton = event.target.closest(".delete_palette");
+    if (deleteButton) {
+      const index = Number(deleteButton.dataset.index);
+      if (Number.isInteger(index) && index >= 0 && index < palettes.length) {
+        palettes.splice(index, 1);
+        if (editingPaletteIndex === index || editingPaletteIndex === null) {
+          resetCustomForm();
+        }
+        renderPalettes();
+      }
+    }
+  });
+}
+
+if (applyCustomButton) {
+  applyCustomButton.addEventListener("click", addCustomPalette);
+}
+
+if (paletteContainer && paletteNameInput && customHexInput && applyCustomButton) {
+  loadDefaultPalettes();
+}
