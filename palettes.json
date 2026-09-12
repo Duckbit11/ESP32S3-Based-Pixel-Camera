@@ -1,36 +1,88 @@
 {
   "palettes": [
     {
-      "name": "Game Boy Green",
-      "colors": ["#0f380f", "#306230", "#8bac0f", "#9bbc0f", "#0f380f", "#306230", "#8bac0f", "#9bbc0f", "#0f380f", "#306230", "#8bac0f", "#9bbc0f", "#0f380f", "#306230", "#8bac0f", "#9bbc0f"]
+      "name": "SLSO8",
+      "colors": [
+        "#0d2b45",
+        "#122d48",
+        "#203c56",
+        "#3a4568",
+        "#544e68",
+        "#6a5a6c",
+        "#8d697a",
+        "#9a6d76",
+        "#d08159",
+        "#d98e5a",
+        "#ffaa5e",
+        "#ffb879",
+        "#ffd4a3",
+        "#ffe2bf",
+        "#ffecd6",
+        "#fff6ea"
+      ]
     },
     {
-      "name": "Sunset Pop",
-      "colors": ["#f72585", "#ffb703", "#fb8500", "#f9c74f", "#ff7b00", "#ef476f", "#ff9f1c", "#ffd166", "#f72585", "#ffb703", "#fb8500", "#f9c74f", "#ff7b00", "#ef476f", "#ff9f1c", "#ffd166"]
+      "name": "Ammo-8",
+      "colors": [
+        "#040c06",
+        "#091611",
+        "#112318",
+        "#153a24",
+        "#1e3a29",
+        "#274b31",
+        "#305d42",
+        "#3b6d4d",
+        "#4d8061",
+        "#5f8c5e",
+        "#89a257",
+        "#9ab76b",
+        "#bedc7f",
+        "#d8e8a9",
+        "#eeffcc",
+        "#f6ffd8"
+      ]
     },
     {
-      "name": "Ocean Drift",
-      "colors": ["#03045e", "#023e8a", "#0077b6", "#00b4d8", "#90e0ef", "#caf0f8", "#48cae4", "#ade8f4", "#03045e", "#023e8a", "#0077b6", "#00b4d8", "#90e0ef", "#caf0f8", "#48cae4", "#ade8f4"]
+      "name": "Clouds",
+      "colors": [
+        "#fcb08c",
+        "#e6a685",
+        "#ef9d7f",
+        "#e39381",
+        "#d6938a",
+        "#c88d92",
+        "#b48d92",
+        "#a998a1",
+        "#a597a1",
+        "#96a0b3",
+        "#8fa0bf",
+        "#94a9c7",
+        "#9aabc9",
+        "#a0b3d0",
+        "#a5b7d4",
+        "#b9cfe3"
+      ]
     },
     {
-      "name": "Neon Night",
-      "colors": ["#000000", "#ff0055", "#00ffcc", "#ffff00", "#ff00ff", "#7000ff", "#ffffff", "#00d9ff", "#000000", "#ff0055", "#00ffcc", "#ffff00", "#ff00ff", "#7000ff", "#ffffff", "#00d9ff"]
-    },
-    {
-      "name": "Forest Calm",
-      "colors": ["#1b4332", "#2d6a4f", "#40916c", "#52b788", "#74c69d", "#95d5b2", "#b7e4c7", "#d8f3dc", "#1b4332", "#2d6a4f", "#40916c", "#52b788", "#74c69d", "#95d5b2", "#b7e4c7", "#d8f3dc"]
-    },
-    {
-      "name": "Candy Burst",
-      "colors": ["#ffafcc", "#ffc8dd", "#f9f871", "#ffb703", "#ff7b00", "#ff006e", "#8338ec", "#3a86ff", "#ffafcc", "#ffc8dd", "#f9f871", "#ffb703", "#ff7b00", "#ff006e", "#8338ec", "#3a86ff"]
-    },
-    {
-      "name": "Monochrome",
-      "colors": ["#111111", "#1f1f1f", "#2b2d42", "#3b3b3b", "#495057", "#5d5d5d", "#6c757d", "#7f8791", "#adb5bd", "#c4c9ce", "#dfe3e6", "#e7ebee", "#f3f5f7", "#f8f9fa", "#ffffff", "#ffffff"]
-    },
-    {
-      "name": "Retro Pastel",
-      "colors": ["#f4acb7", "#ffcad4", "#f6bd60", "#e9edc9", "#cdb4db", "#bde0fe", "#a2d2ff", "#90be6d", "#f4acb7", "#ffcad4", "#f6bd60", "#e9edc9", "#cdb4db", "#bde0fe", "#a2d2ff", "#90be6d"]
+      "name": "Parchment",
+      "colors": [
+        "#292418",
+        "#3b312b",
+        "#524839",
+        "#5f5a48",
+        "#73654a",
+        "#7f6d56",
+        "#8b7d62",
+        "#9c8f72",
+        "#a48d6a",
+        "#b39c7c",
+        "#bda583",
+        "#c3af8f",
+        "#cdba94",
+        "#d8c5a0",
+        "#e6ceac",
+        "#f1e0c5"
+      ]
     }
   ]
 }
